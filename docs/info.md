@@ -13,17 +13,17 @@ You can also include images in this folder and reference them in the markdown. E
 
 # Your project title
 
-Author: Your Name
+Author: Goutham
 
 Peripheral index: nn
 
 ## What it does
 
-Explain what your peripheral does and how it works
+UART works by getting bit by bit and building it into a register asynchronously and then adding it into the instr_mem
 
 ## Register map
 
-Document the registers that are used to interact with your peripheral
+Document the registers that are used to interact with your peripheral,,, will tell later
 
 | Address | Name  | Access | Description                                                         |
 |---------|-------|--------|---------------------------------------------------------------------|
@@ -31,8 +31,8 @@ Document the registers that are used to interact with your peripheral
 
 ## How to test
 
-Explain how to use your project
+its used with brains
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Laptop
