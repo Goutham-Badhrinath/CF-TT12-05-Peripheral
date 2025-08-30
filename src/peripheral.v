@@ -28,7 +28,7 @@ module tqvp_example (
 
    // Example: Implement an 8-bit read/write register at address 0
     reg [7:0] instr_mem[0:15];
-    always @(posedge clk) begin
+    always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             instr_mem[address] <= 0;
             rdy_clr <= 0;
