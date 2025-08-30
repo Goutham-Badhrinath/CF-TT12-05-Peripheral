@@ -30,7 +30,6 @@ module tqvp_example (
     reg [7:0] instr_mem[0:15];
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            instr_mem[address] <= 0;
             rdy_clr <= 0;
             wr_en <= 0;
             data_out1 <= 0;
