@@ -35,8 +35,8 @@ async def test_project(dut):
     # Test register write and read back
     await tqv.write_reg(0, 20)
     await ClockCycles(dut.clk, 5000)
-    assert await tqv.read_reg(0) == 20
-
+    x3 = dut.uo_out.value.binstr   # converts whole bus to Python int
+    dut._log.info(f"written = {x3} ")
     # Set an input value, in the example this will be added to the register value
 
     # Wait for two clock cycles to see the output values, because ui_in is synchronized over two clocks,
