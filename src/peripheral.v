@@ -69,6 +69,6 @@ module tqvp_example (
         .dout(dout)
     );
     // Prevent unused warnings (like in example)
-    wire _unused = &{ena, ui_in[6:0],data_in};
+    wire _unused = &{ui_in[6:0],data_in};
 
 endmodule
