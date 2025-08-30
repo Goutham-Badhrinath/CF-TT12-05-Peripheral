@@ -33,6 +33,7 @@ module tqvp_example (
             instr_mem[address] <= 0;
             rdy_clr <= 0;
             wr_en <= 0;
+            data_out1 <= 0;
         end else begin
             rdy_clr <= 0;
             if (data_write && rdy && !tx_busy) begin instr_mem[address] <= dout; rdy_clr <= 1; end
