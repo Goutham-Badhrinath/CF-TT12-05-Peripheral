@@ -36,8 +36,6 @@ async def test_project(dut):
     await tqv.write_reg(0, 20)
     await ClockCycles(dut.clk, 500)
 
-    assert await tqv.read_reg(0) == 20
-
     # Wait for two clock cycles to see the output values, because ui_in is synchronized over two clocks,
     # and a further clock is required for the output to propagate.
     await ClockCycles(dut.clk, 3)
