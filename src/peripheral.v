@@ -26,26 +26,49 @@ module tqvp_example (
     output [7:0]  data_out      // Data out from the peripheral, set this in accordance with the supplied address
 );
 
-    // Example: Implement an 8-bit read/write register at address 0
-    reg [7:0] example_data;
+   // Example: Implement an 8-bit read/write register at address 0
+    reg [7:0] instr_mem[0:15];
     always @(posedge clk) begin
         if (!rst_n) begin
-            example_data <= 0;
+            instr_mem[address] <= 0;
+            rdy_clr <= 0;
+            wr_en <= 0;
         end else begin
-            if (address == 4'h0) begin
-                if (data_write) example_data <= data_in;
-            end
+            rdy_clr <= 0;
+            if (data_write && rdy && !tx_busy) begin instr_mem[address] <= dout; rdy_clr <= 1; end
+            else if(!data_write)  begin data_out1 <= instr_mem[address]; end
         end
     end
+    reg [7:0] data_out1 = 0;
+    assign data_out = data_out1;
+    reg [7:0] din = 0;
+    wire [7:0] dout;
+    wire uart_rx = ui_in[7];  // properly connect to input bit
+    wire uart_tx;
+    reg wr_en;
 
-    // All output pins must be assigned. If not used, assign to 0.
-    assign uo_out  = ui_in + example_data;  // Example: uo_out is the sum of ui_in and the example register
+    assign uo_out[0]   = uart_tx;
+    assign uo_out[7:1] = 7'b0000000;
+    
+    reg rdy_clr;
 
-    // Address 0 reads the example data register.  
-    // Address 1 reads ui_in
-    // All other addresses read 0.
-    assign data_out = (address == 4'h0) ? example_data :
-                      (address == 4'h1) ? ui_in :
-                      8'h0;    
+    wire rdy;
+    wire tx_busy;
+
+    // UART instantiation
+    uart my_uart (
+        .din(din),
+        .wr_en(wr_en),
+        .clk_50m(clk),
+        .rst(rst_n),
+        .tx(uart_tx),
+        .tx_busy(tx_busy),
+        .rx(uart_rx),
+        .rdy(rdy),
+        .rdy_clr(rdy_clr),
+        .dout(dout)
+    );
+    // Prevent unused warnings (like in example)
+    wire _unused = &{ena, ui_in[6:0],data_in};
 
 endmodule
