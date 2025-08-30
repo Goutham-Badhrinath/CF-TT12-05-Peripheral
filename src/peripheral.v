@@ -33,15 +33,16 @@ module tqvp_example (
             rdy_clr <= 0;
             wr_en <= 0;
             data_out1 <= 0;
+            din <= 0;
         end else begin
             rdy_clr <= 0;
             if (data_write && rdy && !tx_busy) begin instr_mem[address] <= dout; rdy_clr <= 1; end
             else if(!data_write)  begin data_out1 <= instr_mem[address]; end
         end
     end
-    reg [7:0] data_out1 = 0;
+    reg [7:0] data_out1;
     assign data_out = data_out1;
-    reg [7:0] din = 0;
+    reg [7:0] din;
     wire [7:0] dout;
     wire uart_rx = ui_in[7];  // properly connect to input bit
     wire uart_tx;
