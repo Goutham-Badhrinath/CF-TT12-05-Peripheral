@@ -24,10 +24,10 @@ project:
     - "test_harness/reclocking.sv"
     - "test_harness/spi_reg.sv"
     - "test_harness/synchronizer.sv"
-    - "user_peripherals/uart.v"
-    - "user_peripherals/receiver.v"
-    - "user_peripherals/transmitter.v"
-    - "user_peripherals/baud_rate_gen.v"
+    - "uart.v"
+    - "receiver.v"
+    - "transmitter.v"
+    - "baud_rate_gen.v"
 
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
