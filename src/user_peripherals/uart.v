@@ -1,6 +1,4 @@
-`include "baud_rate_gen.v"
-`include "receiver.v"
-`include "transmitter.v"
+
 module uart(input wire [7:0] din,
 	    input wire wr_en,
 		input wire rst,
