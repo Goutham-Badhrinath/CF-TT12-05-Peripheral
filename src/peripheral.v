@@ -48,9 +48,9 @@ module tqvp_example (
     wire uart_tx;
     reg wr_en;
 
-    assign uo_out[0]   = uart_tx;
-    assign uo_out[7:1] = 7'b0000000;
-    
+    //assign uo_out[0]   = uart_tx;
+    //assign uo_out[7:1] = 7'b0000000;
+    assign uo_out = data_out1;
     reg rdy_clr;
 
     wire rdy;
